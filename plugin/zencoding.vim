@@ -118,13 +118,13 @@ function! s:install_plugin()
   \]
 
     if !hasmapto('<plug>'.item.plug, item.mode)
-      exe item.mode . 'noremap <plug>' . item.plug . ' ' . item.func
+      exe item.mode . 'noremap <silent> <plug>' . item.plug . ' ' . item.func
     endif
     if !exists('g:' . item.var)
       exe 'let g:' . item.var . " = '" . g:user_zen_leader_key . item.key . "'"
     endif
     if len(maparg(eval('g:' . item.var), item.mode)) == 0
-      exe item.mode . 'map <unique> ' . eval('g:' . item.var) . ' <plug>' . item.plug
+      exe item.mode . 'map <silent> <unique> ' . eval('g:' . item.var) . ' <plug>' . item.plug
     endif
   endfor
 endfunction
